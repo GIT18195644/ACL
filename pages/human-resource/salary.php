@@ -99,14 +99,17 @@ include('../../php/Session.php');
                                                 $SumofOT = 0;
                                                 $otSalary = 0;
                                                 $month = date("F");
-                                                $foods = $row["meal"] * 150;
+                                                $foods = 0;
                                                 $epf = $row["salary"] * 0.08;
 
-                                                $query2 = "SELECT ot_hours, ot_salary FROM attendance WHERE worker_id = $reguser;";
+                                                $query2 = "SELECT ot_hours, ot_salary, meal FROM attendance WHERE worker_id = $reguser;";
                                                 $res2 = mysqli_query($connection, $query2);
                                                 while ($row2 = mysqli_fetch_array($res2)) {
                                                     $SumofOT = $SumofOT + $row2["ot_hours"];
                                                     $otSalary = $otSalary + $row2["ot_salary"];
+                                                    if ($row2["meal"] == 1) {
+                                                        $foods = $foods + 1;
+                                                    }
                                                 }
 
                                                 $RegNumber = "ACL-" . $row["worker_id"];
@@ -124,7 +127,7 @@ include('../../php/Session.php');
                                                 echo "LKR " . $row["salary"];
                                                 echo "</td>";
                                                 echo "<td>";
-                                                echo "(".$row["meal"].")" . " - " . $foods;
+                                                echo "(".$foods.")" . " - " . ($foods * 150);
                                                 echo "</td>";
                                                 echo "<td>";
                                                 echo $SumofOT;
