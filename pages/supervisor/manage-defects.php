@@ -59,7 +59,7 @@ include('../../php/Session.php');
                                 <h2>Unauthorized Defects</h2>
                             </div>
                             <div class="col" style="text-align: right;">
-                                <input type="button" id="btnExport" style="color: #fff;" class="btn btn-primary" value="Export as Excel" onclick="Export()" />
+                                <!-- <input type="button" id="btnExport" style="color: #fff;" class="btn btn-primary" value="Export as Excel" onclick="Export()" /> -->
                                 <!-- <button type="button" id="btnExport" onclick="Export()" style="color: #fff;" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> Export as Report</button> -->
                                 <!-- <button type="button" id="btnExport" onclick="Manage()" style="color: #fff;" class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i> Manage Defects</button> -->
                             </div>
@@ -143,7 +143,7 @@ include('../../php/Session.php');
                                 <h2>Authorized Defects</h2>
                             </div>
                             <div class="col" style="text-align: right;">
-                                <input type="button" id="btnExport" style="color: #fff;" class="btn btn-primary" value="Export as Excel" onclick="Export()" />
+                                <!-- <input type="button" id="btnExport" style="color: #fff;" class="btn btn-primary" value="Export as Excel" onclick="Export()" /> -->
                                 <!-- <button type="button" id="btnExport" onclick="Export()" style="color: #fff;" class="btn btn-primary"><i class="fa fa-cloud-download" aria-hidden="true"></i> Export as Report</button> -->
                                 <!-- <button type="button" id="btnExport" onclick="Manage()" style="color: #fff;" class="btn btn-primary"><i class="fa fa-pencil-square" aria-hidden="true"></i> Manage Defects</button> -->
                             </div>
