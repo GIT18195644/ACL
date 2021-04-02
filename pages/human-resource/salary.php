@@ -71,12 +71,14 @@ include('../../php/Session.php');
                                     <table id="dataTable" class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Employee ID Number</th>
+                                                <th scope="col">Employee ID</th>
                                                 <th scope="col">Employee Name</th>
                                                 <th scope="col">Month</th>
                                                 <th scope="col">Basic Salary</th>
+                                                <th scope="col">Refreshments</th>
                                                 <th scope="col">Total OT Hours</th>
-                                                <th scope="col">Total OT Payment</th>
+                                                <th scope="col">Total OT Payment</th>                                              
+                                                <th scope="col">EPF</th>
                                                 <th scope="col">Net Salary</th>
                                             </tr>
                                         </thead>
@@ -89,7 +91,7 @@ include('../../php/Session.php');
                                                 echo "Database connection failed.";
                                             }
                                             $Currentmonth = date("F");
-                                            $query = "SELECT a.worker_id, u.fullname, u.salary, a.in_time, a.out_time, a.working_hours, a.ot_hours FROM attendance a, users u WHERE a.worker_id = u.worker_id && a.month = '$Currentmonth' GROUP BY worker_id ORDER BY date DESC;";
+                                            $query = "SELECT a.worker_id, u.fullname, u.salary, a.in_time, a.out_time, a.working_hours, a.ot_hours, a.meal FROM attendance a, users u WHERE a.worker_id = u.worker_id && a.month = '$Currentmonth' GROUP BY worker_id ORDER BY date DESC;";
 
                                             $res = mysqli_query($connection, $query);
                                             while ($row = mysqli_fetch_array($res)) {
@@ -97,6 +99,8 @@ include('../../php/Session.php');
                                                 $SumofOT = 0;
                                                 $otSalary = 0;
                                                 $month = date("F");
+                                                $foods = $row["meal"] * 150;
+                                                $epf = $row["salary"] * 0.08;
 
                                                 $query2 = "SELECT ot_hours, ot_salary FROM attendance WHERE worker_id = $reguser;";
                                                 $res2 = mysqli_query($connection, $query2);
@@ -120,13 +124,19 @@ include('../../php/Session.php');
                                                 echo "LKR " . $row["salary"];
                                                 echo "</td>";
                                                 echo "<td>";
+                                                echo "(".$row["meal"].")" . " - " . $foods;
+                                                echo "</td>";
+                                                echo "<td>";
                                                 echo $SumofOT;
                                                 echo "</td>";
                                                 echo "<td>";
                                                 echo "LKR " . ($otSalary);
                                                 echo "</td>";
                                                 echo "<td>";
-                                                echo "LKR " . ($row["salary"] + $otSalary);
+                                                echo "LKR " . $epf;
+                                                echo "</td>";
+                                                echo "<td>";
+                                                echo "LKR " . ($row["salary"] + $otSalary - $foods - $epf);
                                                 echo "</td>";
                                             }
                                             mysqli_close($connection);

@@ -67,7 +67,7 @@ include('../../php/Session.php');
                                             <option disabled selected>- Select Worker Name -</option>
                                             <?php
                                             include "../../php/DBConnection.php";  // Using database connection file here
-                                            $records = mysqli_query($db, "SELECT `worker_id`,`fullname`,`role` FROM `users` ORDER BY `role`");  // Use select query here 
+                                            $records = mysqli_query($db, "SELECT `worker_id`,`fullname`,`role` FROM `users` WHERE `role` != 'Intern Trainee' ORDER BY `role`");  // Use select query here 
 
                                             while ($data = mysqli_fetch_array($records)) {
                                                 echo "<option value='" . $data['worker_id'] . "'>" . $data['fullname'] . " - (" . $data['role'] . ")" . "</option>";  // displaying data in option menu
@@ -116,6 +116,14 @@ include('../../php/Session.php');
                                         <label for="formGroupExampleInput2">Over Time Payments</label>
                                         <input type="text" class="form-control" id="salaryot" name="salaryot" disabled>
                                         <input type="text" id="salaryot1" name="salaryot1" hidden>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="formGroupExampleInput2">Provides Foods - (Lunch)</label>
+                                        <select class="form-control" id="foodservice" name="foodservice" required>
+                                            <option disabled selected>- Select type -</option>
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
                                     </div>
                                     <br><br>
                                     <button type="submit" id="btnsubsalary" name="btnsubsalary" class="btn btn-primary" hidden>Add Another One</button>

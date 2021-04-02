@@ -17,8 +17,9 @@ if ($con->connect_error) {
     $whours = $_POST['whours'];
     $othours = $_POST['othours1'];
     $salaryot = $_POST['salaryot1'];
+    $meal = $_POST['foodservice'];
 
-    $sql = "INSERT INTO `attendance`(`worker_id`, `date`, `month`, `in_time`, `out_time`, `working_hours`, `ot_hours`, `ot_salary`) VALUES ('$worker_id', '$date', '$month', '$intime', '$outtime', '$whours', '$othours', '$salaryot')";
+    $sql = "INSERT INTO `attendance`(`worker_id`, `date`, `month`, `in_time`, `out_time`, `working_hours`, `ot_hours`, `ot_salary`, `meal`) VALUES ('$worker_id', '$date', '$month', '$intime', '$outtime', '$whours', '$othours', '$salaryot', '$meal')";
 }
 
 if ($con->query($sql)) {
